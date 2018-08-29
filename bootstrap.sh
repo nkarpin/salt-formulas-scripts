@@ -549,12 +549,12 @@ install_salt_formula_git()
         echo -e "\nConfiguring salt formula ${formula_service} ...\n"
         _BRANCH=${FORMULAS_BRANCH}
         [ ! -d "${FORMULAS_PATH}/env/_formulas/${formula_service}" ] && {
-            if ! git ls-remote --exit-code --heads ${FORMULAS_BASE}/salt-formula-${formula_service}.git ${_BRANCH}; then
+            if ! git ls-remote --exit-code --heads ${FORMULAS_BASE}/${formula_service}.git ${_BRANCH}; then
               # Fallback to the master branch if the branch doesn't exist for this repository
               _BRANCH=master
             fi
-            if ! git clone ${FORMULAS_BASE}/salt-formula-${formula_service}.git ${FORMULAS_PATH}/env/_formulas/${formula_service} -b ${_BRANCH}; then
-              echo -e "\nCloning of ${FORMULAS_BASE}/salt-formula-${formula_service}.git failed.\n"
+            if ! git clone ${FORMULAS_BASE}/${formula_service}.git ${FORMULAS_PATH}/env/_formulas/${formula_service} -b ${_BRANCH}; then
+              echo -e "\nCloning of ${FORMULAS_BASE}/${formula_service}.git failed.\n"
               exit 1
             fi
           } || {
